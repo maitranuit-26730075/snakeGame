@@ -96,6 +96,5 @@ int main() {
         snake.move(direction);
         Sleep(150);
     }
-
     return 0;
 }
