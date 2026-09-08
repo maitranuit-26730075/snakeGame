@@ -1,0 +1,23 @@
+# Visual Studio & C++ ignores
+.vs/
+x64/
+x86/
+[D-d][E-e][B-b][U-u][G-g]/
+[R-r][E-e][L-l][E-e][A-a][S-s][E-e]/
+*.user
+*.aps
+*.pch
+*.vsix
+*.opendb
+*.db
+*.ipch
+*.log
+*.tlog
+*.obj
+*.exe
+*.pdb
+*.idb
+*.iobj
+*.ipdb
+*.dt.json
+*.dt.module.json
