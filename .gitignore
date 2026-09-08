@@ -21,3 +21,10 @@ Release/
 *.ipdb
 *.dt.json
 *.dt.module.json
+
+# Visual Studio project & solution files
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.slnx
