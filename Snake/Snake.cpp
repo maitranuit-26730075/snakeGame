@@ -24,6 +24,22 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
+void drawBorder() {
+    for (int x = BOARD_LEFT; x <= BOARD_RIGHT; ++x) {
+        gotoxy(x, BOARD_TOP);
+        cout << '#';
+        gotoxy(x, BOARD_BOTTOM);
+        cout << '#';
+    }
+
+    for (int y = BOARD_TOP; y <= BOARD_BOTTOM; ++y) {
+        gotoxy(BOARD_LEFT, y);
+        cout << '#';
+        gotoxy(BOARD_RIGHT, y);
+        cout << '#';
+    }
+}
+
 class Snake {
 private:
     vector<Point> body;
@@ -92,10 +108,10 @@ int main() {
         }
 
         system("cls");
+        drawBorder();
         snake.draw();
         snake.move(direction);
         Sleep(150);
     }
-
     return 0;
 }
