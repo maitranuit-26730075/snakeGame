@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 #include <windows.h>
 #include <conio.h>
 using namespace std;
@@ -79,7 +81,28 @@ public:
         }
         return false;
     }
+
+    void grow() {
+        // Sau khi vua di chuyen, lap lai dot duoi de tang 1 dot.
+        body.push_back(body.back());
+    }
 };
+
+Point spawnFood(const Snake& snake) {
+    Point food;
+
+    do {
+        food.x = BOARD_LEFT + 1 + rand() % (BOARD_RIGHT - BOARD_LEFT - 1);
+        food.y = BOARD_TOP + 1 + rand() % (BOARD_BOTTOM - BOARD_TOP - 1);
+    } while (snake.occupies(food.x, food.y));
+
+    return food;
+}
+
+void drawFood(const Point& food) {
+    gotoxy(food.x, food.y);
+    cout << '*';
+}
 
 bool isOpposite(Direction current, Direction next) {
     return (current == Direction::Right && next == Direction::Left) ||
@@ -89,8 +112,11 @@ bool isOpposite(Direction current, Direction next) {
 }
 
 int main() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+
     Snake snake;
     Direction direction = Direction::Right;
+    Point food = spawnFood(snake);
 
     while (true) {
         if (_kbhit()) {
@@ -108,9 +134,17 @@ int main() {
         }
 
         system("cls");
+        drawFood(food);
         drawBorder();
         snake.draw();
         snake.move(direction);
+
+        Point h = snake.head();
+        if (h.x == food.x && h.y == food.y) {
+            snake.grow();
+            food = spawnFood(snake);
+        }
+
         Sleep(150);
     }
     return 0;
