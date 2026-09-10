@@ -28,3 +28,6 @@ Release/
 *.vcxproj.user
 *.sln
 *.slnx
+
+# JetBrains IDE
+.idea/
